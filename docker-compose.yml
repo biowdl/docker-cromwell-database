@@ -1,0 +1,15 @@
+version: '3'
+services:
+  cromwell_db:
+    image: "mysql:5.7"
+    container_name: cromwell_db
+    environment:
+      - MYSQL_DATABASE=${DATABASE}
+      - MYSQL_ROOT_PASSWORD=${ROOT_PASSWORD}
+      - MYSQL_USER=${USER}
+      - MYSQL_PASSWORD=${PASSWORD}
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+    # Only usable for local machine
+    ports:
+      - "127.0.0.1:3306:3306"
